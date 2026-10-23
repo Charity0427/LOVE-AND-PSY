@@ -1,38 +1,44 @@
-export type Role = 'zhiwei'|'aheng'|'lingyi'|'peizhao'|'narrator';
-export type Shot = {role:Role;line:string;cast:Role[];effect?:'letter'|'thunder'|'lantern'};
-export const roles:Record<Role,{name:string;title:string;color:string}>={
- zhiwei:{name:'沈知微',title:'新任女史 · 你',color:'#b6cec0'},aheng:{name:'阿蘅',title:'尚仪局宫女',color:'#efc6bd'},lingyi:{name:'沈令仪',title:'尚仪局掌事',color:'#d5b77d'},peizhao:{name:'裴照',title:'巡夜校尉',color:'#a8c9d4'},narrator:{name:'旁白',title:'',color:'#dbcba9'}
+export type Role = 'you'|'psy'|'xia'|'narrator';
+export type Shot = {role:Role;line:string;cast:Role[];effect?:'note'|'sparkle'|'music'};
+export const roles:Record<Role,{name:string;title:string;color:string;bio:string}>={
+ you:{name:'你',title:'女主角 · 晴川大学大二学生',color:'#f3c4c8',bio:'故事的女主角。第一次独自参加校园音乐节，却从一把伞开始，慢慢走进 PSY 的世界。'},
+ psy:{name:'PSY',title:'男主角 · 校园音乐社成员',color:'#bad9ee',bio:'你唯一的恋爱男主角。同校大二学生，看起来安静随性，却记得你每一个不经意的小习惯。喜欢弹吉他，不太擅长藏住见到你的笑意。'},
+ xia:{name:'许夏',title:'室友 · 你的恋爱助攻',color:'#f0c8a7',bio:'你的室友兼音乐节志愿者。嘴上说着只是顺路，总能刚好把你送到 PSY 面前。她是支持你的朋友，不是恋爱路线。'},
+ narrator:{name:'旁白',title:'',color:'#e7d5c5',bio:''}
 };
 export const shots:Record<string,Shot[]>={
- arrival:[{role:'narrator',cast:[],line:'景和三年，暮春。长安城的雨，已经下了三日。你奉召入宫，却不知道，这扇门后藏着谁的命运。'},
- {role:'zhiwei',cast:['zhiwei'],line:'母亲说，入宫之后，少看、少问，便能平安。可这宫门一关……真的还由得了我吗？'},
- {role:'aheng',cast:['zhiwei','aheng'],line:'姐姐，别回头。收好这封信。',effect:'thunder'},
- {role:'zhiwei',cast:['zhiwei','aheng'],line:'等等，你是谁？你的手怎么在发抖？'},
- {role:'aheng',cast:['zhiwei','aheng'],line:'今夜子时，莫饮宫茶。若有人问起……你从未见过我。',effect:'letter'},
- {role:'narrator',cast:['zhiwei'],line:'小宫女消失在雨幕中。掌心的信还留着余温，廊下却响起了另一道脚步声。'},
- {role:'lingyi',cast:['zhiwei','lingyi'],line:'新来的女史？抬起头来。方才，谁在与你说话？'}],
- garden:[{role:'narrator',cast:[],line:'你借着雨声追进御苑。海棠花瓣落在石灯旁，那名宫女正紧紧攥着一枚缺角的玉扣。'},
- {role:'aheng',cast:['zhiwei','aheng'],line:'你不该跟来的。她们若看见你，连你也会被牵连。'},
- {role:'zhiwei',cast:['zhiwei','aheng'],line:'你明知危险，还要递信给我。如今让我装作没看见，我做不到。'},
- {role:'aheng',cast:['zhiwei','aheng'],line:'我叫阿蘅。昨夜有人换了尚仪局的茶。西廊有一本茶料簿……我只知道这些。',effect:'lantern'},
- {role:'narrator',cast:['zhiwei','aheng'],line:'「什么人在那里？」侍卫的灯光扫过花枝。阿蘅看向你，眼里只剩最后一点希望。'}],
- court:[{role:'narrator',cast:['zhiwei','lingyi'],line:'帘后香烟袅袅。沈令仪没有追问信笺，只将一杯热茶推到你面前。'},
- {role:'lingyi',cast:['zhiwei','lingyi'],line:'在这里，规矩可以学。分寸，却要拿一生去记。'},
- {role:'zhiwei',cast:['zhiwei','lingyi'],line:'大人是说，有些事，即使看见了，也不该开口？'},
- {role:'lingyi',cast:['zhiwei','lingyi'],line:'我是说，开口之前，先想好你要保护谁。喝茶吧。',effect:'lantern'},
- {role:'narrator',cast:['zhiwei','lingyi'],line:'茶汤澄澈，清香却多了一丝陌生的甜。你按住袖中的信，终于明白这道选择意味着什么。'}],
- archive:[{role:'narrator',cast:['zhiwei'],line:'入夜，西廊典籍阁。你翻开茶料簿，最后一页被撕去一半。残页上，赫然写着「阿蘅」。',effect:'lantern'},
- {role:'zhiwei',cast:['zhiwei'],line:'她递信救我，账册上却写着她的名字……这是有人设好的局。'},
- {role:'peizhao',cast:['zhiwei','peizhao'],line:'别出声。我是巡夜校尉裴照。有人正往这里来，你只来得及带走一样东西。'},
- {role:'zhiwei',cast:['zhiwei','peizhao'],line:'一本账册，一封供词。带错了，真相和她的性命，都会消失。'},
- {role:'peizhao',cast:['zhiwei','peizhao'],line:'我守着这扇门。但怎么走，由你来选。'}],
- decision:[{role:'narrator',cast:[],line:'黎明前，你被召到承明殿。阿蘅跪在阶下，裴照立于殿外，所有人都在等你开口。'},
- {role:'lingyi',cast:['zhiwei','lingyi'],line:'茶料簿已经被调换。此刻站出来，你便再也无法置身事外。'},
- {role:'zhiwei',cast:['zhiwei','lingyi'],line:'若我今日不说话，明日还会有另一个阿蘅。'},
- {role:'lingyi',cast:['zhiwei','lingyi'],line:'那就让我看看，你要怎样走出这一步。'},
- {role:'narrator',cast:['zhiwei'],line:'天光穿过殿门。你松开紧攥的手，第一次，没有避开任何人的目光。'}]
+ arrival:[{role:'narrator',cast:[],line:'晴川大学，春季学期。午后的雨忽然落下来，你抱着报名表，躲进樱花道旁窄窄的屋檐。'},
+ {role:'you',cast:['you'],line:'早知道就听许夏的带把伞……音乐节报名还有十分钟截止。'},
+ {role:'psy',cast:['you','psy'],line:'去活动中心？顺路。要不要一起？'},
+ {role:'you',cast:['you','psy'],line:'谢谢！可是这样，你的肩膀会淋湿吧。'},
+ {role:'psy',cast:['you','psy'],line:'没关系。报名表比较要紧。对了，叫我 PSY 就好。'},
+ {role:'narrator',cast:['you','psy'],line:'他把伞往你这边倾了倾，怀里笔记本的边角却被雨打湿了。雨声很近，你听见自己心跳漏了一拍。',effect:'sparkle'},
+ {role:'psy',cast:['you','psy'],line:'我明天下午会在图书馆。伞先借给你……这样，就有理由再见一次了。',effect:'note'}],
+ library:[{role:'narrator',cast:[],line:'第二天下午，你推开图书馆的玻璃门。靠窗的座位上，PSY 身旁恰好空着一个位置。'},
+ {role:'psy',cast:['you','psy'],line:'你来了。这个位置，今天一直没让给别人。'},
+ {role:'you',cast:['you','psy'],line:'我来还伞，还有……昨天没来得及说，我很高兴认识你。'},
+ {role:'psy',cast:['you','psy'],line:'那帮我看看这张歌单？第十七首，是昨天回去以后加上的。'},
+ {role:'narrator',cast:['you','psy'],line:'你低头，看见纸边一行小字：「下次见面，想和你一起听。」窗外的光，刚好落在他的侧脸。',effect:'note'}],
+ rooftop:[{role:'narrator',cast:[],line:'音乐楼的天台比你想象中安静。PSY 看见你时，拨弦的手停了一拍。'},
+ {role:'psy',cast:['you','psy'],line:'你真的来了。我还在想，昨天那个邀约是不是我听错了。'},
+ {role:'you',cast:['you','psy'],line:'没有听错。我想听你弹琴，也想……多认识你一点。'},
+ {role:'psy',cast:['you','psy'],line:'那这段前奏先给你听。音乐节那天，如果紧张，我就看向你。',effect:'music'},
+ {role:'narrator',cast:['you','psy'],line:'风掀起他衬衫的一角。他没有急着弹下一句，好像在等一个只属于你的回答。'}],
+ festival:[{role:'narrator',cast:['xia'],line:'春日音乐节开场。许夏把手幅塞进你手里，又悄悄替你理好被风吹乱的头发。'},
+ {role:'xia',cast:['you','xia'],line:'别找啦，PSY 刚刚已经往这边看了三次。你只是来听歌的？我可不信。'},
+ {role:'you',cast:['you','xia'],line:'我……是想见他。但还不知道，他是不是也这么想。'},
+ {role:'narrator',cast:[],line:'灯光亮起。PSY 对着话筒轻轻吸了一口气，目光越过人群，准确地停在你身上。',effect:'music'},
+ {role:'psy',cast:['you','psy'],line:'下一首，送给那个让我开始期待下雨的人。谢谢你，今天也来了。',effect:'sparkle'},
+ {role:'narrator',cast:['you','psy'],line:'最后一个音符落下，他朝你走来。这次，你不想再把心意藏进「刚好路过」。'}],
+ confession:[{role:'narrator',cast:['you','psy'],line:'散场后的长廊只剩晚风。PSY 和你并肩走着，步子慢得像舍不得走到尽头。'},
+ {role:'psy',cast:['you','psy'],line:'其实，图书馆那个位置不是刚好空着。第十七首歌，也不只是想找人分享。'},
+ {role:'you',cast:['you','psy'],line:'那……你那天说的顺路呢？'},
+ {role:'psy',cast:['you','psy'],line:'也不顺路。我看见你站在屋檐下，就想走过去。'},
+ {role:'psy',cast:['you','psy'],line:'我喜欢你。我想认真地问一次：以后，可以不只做同学吗？',effect:'sparkle'},
+ {role:'narrator',cast:['you','psy'],line:'他停下脚步，给你留出回答的时间。你终于知道，这场心动从来不是你一个人的事。'}]
 };
+// Dimensions and thirds match the original generated transparent sprite atlas.
 export function portrait(role:Role):string {
- const index={zhiwei:0,aheng:1,lingyi:2,peizhao:3,narrator:0}[role];
- return `<svg viewBox="0 0 443.5 887" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${roles[role].name}原创角色立绘"><defs><clipPath id="crop-${role}"><rect width="443.5" height="887"/></clipPath></defs><g clip-path="url(#crop-${role})"><image x="${-index*443.5}" href="./art/characters.webp" width="1774" height="887"/></g></svg>`;
+ const index={you:0,psy:1,xia:2,narrator:0}[role];
+ return `<svg viewBox="0 0 512 1024" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${roles[role].name}校园角色立绘"><defs><clipPath id="crop-${role}"><rect width="512" height="1024"/></clipPath></defs><g clip-path="url(#crop-${role})"><image x="${-index*512}" href="./art/campus-characters.webp" width="1536" height="1024"/></g></svg>`;
 }

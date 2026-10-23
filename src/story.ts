@@ -1,13 +1,30 @@
-export type Stats = { wisdom: number; courage: number; trust: number };
+export type Stats = { affection: number; courage: number; rapport: number };
 export type Choice = { text: string; hint: string; delta: Partial<Stats>; next: string };
-export type Scene = { chapter: string; title: string; location: string; speaker: string; text: string[]; choices: Choice[] };
-export const initial: Stats = { wisdom: 30, courage: 30, trust: 30 };
+export type Scene = { chapter: string; title: string; location: string; choices: Choice[] };
+export const initial: Stats = { affection: 30, courage: 30, rapport: 30 };
 export const scenes: Record<string, Scene> = {
- arrival: { chapter:'第一章 · 雨入长安', title:'一封没有署名的信', location:'长安 · 朱雀门', speaker:'旁白', text:['景和三年，暮春。你以女史的身份，第一次走进这座传闻中的皇城。','雨水漫过青石阶。一名小宫女与你擦肩而过，将一封沾湿的信塞进你的掌心。信上只有八个字：','「今夜子时，莫饮宫茶。」','朱红宫门缓缓合拢。远处，掌事女官的脚步声越来越近。'], choices:[{text:'藏起信笺，先观察来人',hint:'谋略 +15',delta:{wisdom:15},next:'court'},{text:'追上宫女，问清信的来历',hint:'胆识 +15',delta:{courage:15},next:'garden'},{text:'向掌事女官坦言此事',hint:'人心 +15',delta:{trust:15},next:'court'}]},
- garden:{chapter:'第一章 · 雨入长安',title:'海棠深处',location:'御苑 · 海棠径',speaker:'阿蘅 · 宫女',text:['你追进海棠花影，终于在一盏石灯旁找到了她。','「我叫阿蘅。昨夜有人换了尚仪局的茶。姐姐若信我，就去查西廊的账册。」','她将一枚缺角的玉扣递给你。廊外忽然传来侍卫的问话声。'],choices:[{text:'替阿蘅遮掩，收下玉扣',hint:'人心 +15',delta:{trust:15},next:'archive'},{text:'独自引开侍卫，让她先走',hint:'胆识 +15',delta:{courage:15},next:'archive'}]},
- court:{chapter:'第一章 · 雨入长安',title:'帘后的目光',location:'尚仪局 · 正殿',speaker:'沈令仪 · 掌事女官',text:['沈令仪端坐在帘后。她看了一眼你的袖口，却没有问那封信。','「宫里最难学的，并非规矩，是分寸。你今日见过的人，可有什么特别？」','案边那杯茶仍冒着热气。你意识到，这既是试探，也可能是一次求援。'],choices:[{text:'借茶香有异，试探她的反应',hint:'谋略 +15',delta:{wisdom:15},next:'archive'},{text:'直言有人预警，请她共同查证',hint:'人心 +15',delta:{trust:15},next:'archive'}]},
- archive:{chapter:'第二章 · 暗香浮动',title:'被抹去的名字',location:'西廊 · 典籍阁',speaker:'旁白',text:['入夜，你在典籍阁找到了那册茶料簿。最后一页被撕去一半，却留下了一个熟悉的名字：阿蘅。','窗外传来三声轻叩。年轻的巡夜校尉裴照递进一盏灯：「有人正往这里来。你只来得及带走一样东西。」','一本账册，一封牵连无辜的供词。灯火在你指间摇晃。'],choices:[{text:'带走账册，保留可核对的证据',hint:'谋略 +20',delta:{wisdom:20},next:'decision'},{text:'带走供词，先保住阿蘅的性命',hint:'人心 +20',delta:{trust:20},next:'decision'},{text:'留下查明来人，让裴照送出证据',hint:'胆识 +20',delta:{courage:20},next:'decision'}]},
- decision:{chapter:'终章 · 天光将至',title:'落子无悔',location:'承明殿 · 阶前',speaker:'沈令仪 · 掌事女官',text:['天将亮时，你被召至承明殿。阿蘅跪在阶下，裴照立在殿外，而沈令仪终于掀起了帘子。','「茶料簿已被调换。此刻开口，你便再也无法置身事外。」','你想起入宫那日的雨。那些沉默的、害怕的、仍愿意伸出手的人，都在等你的回答。'],choices:[{text:'逐条核验证据，请求公开复查',hint:'以谋略破局',delta:{wisdom:10},next:'ending'},{text:'挺身担保，要求当面对质',hint:'以胆识破局',delta:{courage:10},next:'ending'},{text:'联合众人证言，护住每个知情者',hint:'以人心破局',delta:{trust:10},next:'ending'}]}
+ arrival: { chapter:'第一章 · 雨天初见', title:'他的名字，叫 PSY', location:'晴川大学 · 樱花道', choices:[
+  {text:'接过伞，和 PSY 约定明天见',hint:'心动 +15 · 去图书馆赴约',delta:{affection:15},next:'library'},
+  {text:'叫住 PSY：明天一起去看排练吧',hint:'勇气 +15 · 开启天台邀约',delta:{courage:15},next:'rooftop'},
+  {text:'帮 PSY 收好被雨打湿的笔记',hint:'默契 +15 · 去图书馆还书',delta:{rapport:15},next:'library'}]},
+ library:{chapter:'第二章 · 靠窗的位置',title:'第十七页的小秘密',location:'晴川大学 · 图书馆',choices:[
+  {text:'把自己的歌单，写在他名字旁边',hint:'心动 +15',delta:{affection:15},next:'festival'},
+  {text:'记住他的喜好，带来他爱喝的拿铁',hint:'默契 +15',delta:{rapport:15},next:'festival'}]},
+ rooftop:{chapter:'第二章 · 风替我说',title:'只唱给你听的前奏',location:'晴川大学 · 音乐楼天台',choices:[
+  {text:'直视 PSY：我会在台下等你',hint:'勇气 +15',delta:{courage:15},next:'festival'},
+  {text:'把围巾递给他：那就再唱一遍吧',hint:'心动 +15',delta:{affection:15},next:'festival'}]},
+ festival:{chapter:'第三章 · 心动频率',title:'人海里，他先看见你',location:'晴川大学 · 春日音乐节',choices:[
+  {text:'举起写着「PSY 加油」的手幅',hint:'心动 +20',delta:{affection:20},next:'confession'},
+  {text:'走向 PSY，亲口告诉他唱得很好',hint:'勇气 +20',delta:{courage:20},next:'confession'},
+  {text:'留在约好的地方，替他留住最后一盏灯',hint:'默契 +20',delta:{rapport:20},next:'confession'}]},
+ confession:{chapter:'终章 · 把喜欢说给你',title:'这次，不借雨天的名义',location:'晴川大学 · 晚风长廊',choices:[
+  {text:'牵住 PSY 的手：「我也喜欢你。」',hint:'心动 +10 · 回应他的告白',delta:{affection:10},next:'ending'},
+  {text:'把情书递给 PSY：「其实我先喜欢你。」',hint:'勇气 +10 · 让他听见你的心意',delta:{courage:10},next:'ending'},
+  {text:'站到 PSY 身旁：「以后的每天，一起走吧。」',hint:'默契 +10 · 约定属于你们的日常',delta:{rapport:10},next:'ending'}]}
 };
-export function apply(stats:Stats, choice:Choice):Stats { return Object.fromEntries(Object.entries(stats).map(([k,v])=>[k,Math.min(100,v+(choice.delta[k as keyof Stats]??0))])) as Stats; }
-export function ending(stats:Stats) { if(stats.wisdom>=stats.courage&&stats.wisdom>=stats.trust) return {name:'执灯照夜',tag:'谋略之路',text:'你用账册间的矛盾撬开了谎言。茶案得以重审，你被留任典籍阁。宫墙依旧高，你却有了照亮它的第一盏灯。'}; if(stats.courage>=stats.trust) return {name:'长风破局',tag:'胆识之路',text:'你在殿前的坚持为重查赢得了时间。裴照交出了关键证据，阿蘅获释。从此，宫中记住了一位不肯低头的新女史。'};return {name:'海棠有约',tag:'人心之路',text:'你的信任让沉默的人们站到了一起。众人证言还原了真相，沈令仪许你重整尚仪局。来年花开，你与阿蘅在海棠树下再见。'}; }
+export function apply(stats:Stats, choice:Choice):Stats { return Object.fromEntries(Object.entries(stats).map(([k,v])=>[k,Math.min(100,Math.max(0,v+(choice.delta[k as keyof Stats]??0)))])) as Stats; }
+export function ending(stats:Stats) {
+ if(stats.affection>=stats.courage&&stats.affection>=stats.rapport) return {name:'雨季恋人',tag:'心动结局 · 你 × PSY',text:'PSY 握紧你的手，笑着把伞收了起来。「以后想见你，不用等下雨了。」你们从那条樱花道走过，这次并肩，也心照不宣地靠近。校园的故事，终于写成了你和 PSY 的恋爱开篇。'};
+ if(stats.courage>=stats.rapport) return {name:'写给 PSY 的情书',tag:'勇气结局 · 你 × PSY',text:'PSY 读到第一句就红了耳尖。他从口袋里拿出另一封信，收件人也是你。「原来，我们都准备了好久。」两封没有寄出的情书，在同一个夜晚有了答案。你和 PSY，正式成为恋人。'};
+ return {name:'并肩的每一天',tag:'默契结局 · 你 × PSY',text:'PSY 把明早的课表发给你，又认真补上一句：「那从明天起，我可以用男朋友的身份等你下课吗？」你点头。两杯拿铁、靠窗的座位，以及每一个普通的日子，从此都有了你和 PSY。'};
+}
